@@ -8,6 +8,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ExpandableListView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class RecipeList extends AppCompatActivity {
 
@@ -26,6 +31,17 @@ public class RecipeList extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        //Lista de ejemplo, cambiar por acceso a base de datos.
+        List<Recipe> recipe_list = new ArrayList<>();
+        List<String> components = new ArrayList<String>(Arrays.asList("lorem","ipsum"));
+        recipe_list.add(new Recipe(0,"Titulo1", components));
+        recipe_list.add(new Recipe(0,"Titulo2", components));
+
+        //Creación de la lista de recetas
+        ExpandableListView listView = (ExpandableListView) findViewById(R.id.content_recipe_list);
+        RecipeListAdapter listAdapter = new RecipeListAdapter(this, recipe_list);
+        listView.setAdapter(listAdapter);
     }
 
     @Override
