@@ -13,8 +13,12 @@ public class Recipe {
     Integer id;
     public final List<String> children = new ArrayList<String>();
 
-    public Recipe(Integer id, String nombre){
+    public Recipe(Integer id, String nombre, List<String> children){
         this.id = id;
         this.nombre = nombre;
+        for (String s : children) {
+           this.children.add(s);
+        }
+
     }
 }
