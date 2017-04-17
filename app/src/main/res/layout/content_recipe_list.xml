@@ -9,6 +9,7 @@
     tools:showIn="@layout/activity_recipe_list">
 
     <ExpandableListView
+        android:id="@+id/content_recipe_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ExpandableListView>
