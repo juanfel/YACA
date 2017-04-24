@@ -41,7 +41,7 @@ public class RecipeListAdapter extends BaseExpandableListAdapter {
         }
         Recipe recipe = (Recipe) getGroup(groupPosition);
         TextView text = (TextView) convertView.findViewById(R.id.list_recipe_title);
-        text.setText(recipe.nombre);
+        text.setText(recipe.getNombre());
 
         return convertView;
     }
@@ -68,7 +68,7 @@ public class RecipeListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public long getGroupId(int groupPosition) {
-        return recipes.get(groupPosition).id;
+        return recipes.get(groupPosition).getId();
     }
 
     @Override
