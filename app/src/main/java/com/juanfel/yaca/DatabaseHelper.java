@@ -15,6 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     //Campos para Receta
     public static final String Recipe_Table = "RECIPE";
+    public static final String Recipe_Id = "id";
     public static final String Recipe_Name = "name";
     public static final String Recipe_Steps_Json = "steps";
     public static final String Recipe_Timestamp = "timestamp";
@@ -25,14 +26,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String[] recipeArgs = new String[]{Recipe_Table, Recipe_Name, Recipe_Steps_Json, Recipe_Timestamp };
-        db.execSQL("CREATE TABLE ? ( ? text, ? text, ? text, ? text)",recipeArgs);
+        Object[] recipeArgs = new Object[]{Recipe_Table, Recipe_Id, Recipe_Name, Recipe_Steps_Json, Recipe_Timestamp };
+        db.execSQL(String.format("CREATE TABLE %s ( %s text PRIMARY KEY, %s text, %s text, %s text)",
+                Recipe_Table, Recipe_Id, Recipe_Name, Recipe_Steps_Json, Recipe_Timestamp));
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS ?", new String[]{Recipe_Name});
+        db.execSQL("DROP TABLE IF EXISTS " + Recipe_Table);
         onCreate(db);
 
     }
