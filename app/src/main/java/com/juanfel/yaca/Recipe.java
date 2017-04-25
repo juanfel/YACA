@@ -16,7 +16,7 @@ public class Recipe {
     public Recipe(Integer id, String nombre, List<String> children){
         this.setId(id);
         this.setNombre(nombre);
-        if(children != null){
+        if(children != null && !children.isEmpty()){
             for (String s : children) {
                 this.children.add(s);
             }
