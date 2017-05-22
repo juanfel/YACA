@@ -30,11 +30,11 @@ public class RecipeList extends AppCompatActivity {
             public void onClick(View view) {
                 //Example database
                 RecipeDataSource rds = new RecipeDataSource(getApplicationContext());
-                Recipe recipe = new Recipe(0,"Testo", null);
+                Recipe recipe = new Recipe(0,"Testo", Arrays.asList("a","b"));
                 rds.insertRecipe(recipe);
                 List<Recipe> recipes = rds.readRecipes();
-                Log.d("YACA", recipes.get(0).getNombre());
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Log.d("YACA", recipes.get(recipes.size() - 1).getNombre());
+                Snackbar.make(view, "Creando receta de prueba: " + recipe.getNombre(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

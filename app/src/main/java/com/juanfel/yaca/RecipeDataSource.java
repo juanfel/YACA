@@ -27,7 +27,7 @@ public class RecipeDataSource {
     public void insertRecipe(Recipe recipe){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(dbHelper.Recipe_Name, recipe.getId());
+        cv.put(dbHelper.Recipe_Name, recipe.getNombre());
 
         //TODO
         cv.put(dbHelper.Recipe_Steps_Json, "TODO");
