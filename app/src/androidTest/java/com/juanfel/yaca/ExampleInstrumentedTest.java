@@ -3,9 +3,12 @@ package com.juanfel.yaca;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.util.Log;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -22,5 +25,10 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("com.juanfel.yaca", appContext.getPackageName());
+        RecipeDataSource rds = new RecipeDataSource(appContext);
+        Recipe recipe = new Recipe(0,"Testo", null);
+        rds.insertRecipe(recipe);
+        List<Recipe> recipes = rds.readRecipes();
+        Log.d("YACA", recipes.toString());
     }
 }
