@@ -48,7 +48,10 @@ public class RecipeListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return recipes.get(groupPosition).children.get(childPosition);
+        //return recipes.get(groupPosition).children.get(childPosition);
+        Recipe recipe = (Recipe) getGroup(groupPosition);
+        return "ID: " + recipe.getId();
+
     }
 
     @Override
