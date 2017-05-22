@@ -39,7 +39,7 @@ public class RecipeList extends AppCompatActivity {
             }
         });
 
-        //Lista de ejemplo, cambiar por acceso a base de datos.
+        //Recupera la lista de recetas
         RecipeDataSource rds = new RecipeDataSource(getApplicationContext());
         List<Recipe> recipe_list = rds.readRecipes();
 
@@ -47,7 +47,6 @@ public class RecipeList extends AppCompatActivity {
         ExpandableListView listView = (ExpandableListView) findViewById(R.id.content_recipe_list);
         RecipeListAdapter listAdapter = new RecipeListAdapter(this, recipe_list);
         listView.setAdapter(listAdapter);
-
     }
 
     @Override
