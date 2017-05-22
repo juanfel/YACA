@@ -40,10 +40,8 @@ public class RecipeList extends AppCompatActivity {
         });
 
         //Lista de ejemplo, cambiar por acceso a base de datos.
-        List<Recipe> recipe_list = new ArrayList<>();
-        List<String> components = new ArrayList<String>(Arrays.asList("lorem","ipsum"));
-        recipe_list.add(new Recipe(0,"Titulo1", components));
-        recipe_list.add(new Recipe(0,"Titulo2", components));
+        RecipeDataSource rds = new RecipeDataSource(getApplicationContext());
+        List<Recipe> recipe_list = rds.readRecipes();
 
         //Creación de la lista de recetas
         ExpandableListView listView = (ExpandableListView) findViewById(R.id.content_recipe_list);
