@@ -1,6 +1,7 @@
 package com.juanfel.yaca;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
@@ -30,6 +31,7 @@ public class RecipeListAdapter extends BaseExpandableListAdapter {
         }
         String detail = (String) getChild(groupPosition, childPosition);
         TextView text = (TextView) convertView.findViewById(R.id.recipe_list_content_text);
+        Log.d("YACA",detail);
         text.setText(detail);
         return convertView;
     }
@@ -76,7 +78,8 @@ public class RecipeListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return recipes.get(groupPosition).children.size();
+        //return recipes.get(groupPosition).children.size();
+        return 1;
     }
 
     @Override
