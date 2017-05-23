@@ -1,4 +1,5 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="list_item_height">20dp</dimen>
+    <dimen name="list_item_height">16dp</dimen>
+    <dimen name="list_item_header_height">20dp</dimen>
 </resources>
