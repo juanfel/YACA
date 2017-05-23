@@ -31,7 +31,6 @@ public class RecipeList extends AppCompatActivity {
                 Recipe recipe = new Recipe(0,"Testo");
                 rds.insertRecipe(recipe);
                 List<Recipe> recipes = rds.readRecipes();
-                Log.d("YACA", recipes.get(recipes.size() - 1).getNombre());
                 Snackbar.make(view, "Creando receta de prueba: " + recipe.getNombre(), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }

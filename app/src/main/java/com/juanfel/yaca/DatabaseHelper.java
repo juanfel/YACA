@@ -27,8 +27,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         Object[] recipeArgs = new Object[]{Recipe_Table, Recipe_Id, Recipe_Name, Recipe_Steps_Json, Recipe_Timestamp };
-        db.execSQL(String.format("CREATE TABLE %s ( %s text PRIMARY KEY, %s text, %s text, %s text)",
-                Recipe_Table, Recipe_Id, Recipe_Name, Recipe_Steps_Json, Recipe_Timestamp));
+        db.execSQL(String.format("CREATE TABLE %s ( %s integer primary key, %s text , %s text, %s text)",
+                Recipe_Table,  Recipe_Id, Recipe_Name, Recipe_Steps_Json, Recipe_Timestamp));
 
     }
 

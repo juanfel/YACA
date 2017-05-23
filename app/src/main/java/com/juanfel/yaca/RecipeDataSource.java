@@ -18,8 +18,7 @@ import java.util.TimeZone;
 
 public class RecipeDataSource {
     DatabaseHelper dbHelper;
-    String[] columnNames =
-            new String[]{dbHelper.Recipe_Id, dbHelper.Recipe_Name, dbHelper.Recipe_Steps_Json, dbHelper.Recipe_Timestamp};
+    String[] columnNames = new String[]{ dbHelper.Recipe_Id, dbHelper.Recipe_Name, dbHelper.Recipe_Steps_Json, dbHelper.Recipe_Timestamp};
     public RecipeDataSource(Context context){
         dbHelper = new DatabaseHelper(context);
     }
