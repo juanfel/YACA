@@ -51,7 +51,7 @@ public class RecipeDataSource {
             String name = cursor.getString(cursor.getColumnIndex(dbHelper.Recipe_Name));
             //String steps = cursor.getString(cursor.getColumnIndex(dbHelper.Recipe_Steps_Json));
             String timestamp = cursor.getString(cursor.getColumnIndex(dbHelper.Recipe_Timestamp));
-            Recipe recipe = new Recipe(id,name,null);
+            Recipe recipe = new Recipe(id,name);
             recipes.add(recipe);
             cursor.moveToNext();
         }

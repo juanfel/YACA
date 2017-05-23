@@ -50,9 +50,7 @@ public class RecipeListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        //return recipes.get(groupPosition).children.get(childPosition);
-        Recipe recipe = (Recipe) getGroup(groupPosition);
-        return "ID: " + recipe.getId();
+        return recipes.get(groupPosition).header_list.get(childPosition);
 
     }
 
@@ -78,8 +76,7 @@ public class RecipeListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        //return recipes.get(groupPosition).children.size();
-        return 1;
+        return recipes.get(groupPosition).header_list.size();
     }
 
     @Override

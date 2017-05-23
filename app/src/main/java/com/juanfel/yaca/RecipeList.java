@@ -11,8 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ExpandableListView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class RecipeList extends AppCompatActivity {
@@ -30,7 +28,7 @@ public class RecipeList extends AppCompatActivity {
             public void onClick(View view) {
                 //Example database
                 RecipeDataSource rds = new RecipeDataSource(getApplicationContext());
-                Recipe recipe = new Recipe(0,"Testo", Arrays.asList("a","b"));
+                Recipe recipe = new Recipe(0,"Testo");
                 rds.insertRecipe(recipe);
                 List<Recipe> recipes = rds.readRecipes();
                 Log.d("YACA", recipes.get(recipes.size() - 1).getNombre());

@@ -11,15 +11,13 @@ import java.util.List;
 public class Recipe {
     private String nombre;
     private Integer id;
-    public final List<String> children = new ArrayList<String>();
+    public final List<String> header_list = new ArrayList<String>();
 
-    public Recipe(Integer id, String nombre, List<String> children){
+    public Recipe(Integer id, String nombre){
         this.setId(id);
         this.setNombre(nombre);
-        if(children != null && !children.isEmpty()){
-            for (String s : children) {
-                this.children.add(s);
-            }
+        if(this.header_list != null){
+            this.header_list.add("ID: " + this.getId() + "\n");
         }
     }
 
