@@ -4,9 +4,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
@@ -31,9 +33,12 @@ public class RecipeDataSource {
         //TODO
         cv.put(dbHelper.Recipe_Steps_Json, "TODO");
 
-        SimpleDateFormat df = new SimpleDateFormat("YYYY-MM-DD'T'HH:mm:ss'Z'");
+        SimpleDateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:mm:ss");
         df.setTimeZone(TimeZone.getTimeZone("GMT"));
-        cv.put(dbHelper.Recipe_Timestamp, df.format(new Date()));
+        Calendar c = Calendar.getInstance();
+        Log.d("YACA", df.format(c.getTime()));
+        cv.put(dbHelper.Recipe_Timestamp, df.format(c.getTime()));
+
 
         db.insert(dbHelper.Recipe_Table, null, cv);
         db.close();

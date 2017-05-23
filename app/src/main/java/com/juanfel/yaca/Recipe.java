@@ -25,7 +25,7 @@ public class Recipe {
         this.setNombre(nombre);
         if(this.header_list != null){
             this.header_list.add("ID: " + this.getId() + "\n");
-            this.header_list.add("Timestamp:" + this.getTimestamp() + "\n");
+            this.header_list.add("Timestamp:" + timestamp + "\n");
         }
         this.steps = steps;
         this.timestamp = timestamp;
