@@ -26,7 +26,7 @@ public class ExampleInstrumentedTest {
 
         assertEquals("com.juanfel.yaca", appContext.getPackageName());
         RecipeDataSource rds = new RecipeDataSource(appContext);
-        Recipe recipe = new Recipe(0,"Testo");
+        Recipe recipe = new Recipe(0,"Testo", "", );
         rds.insertRecipe(recipe);
         List<Recipe> recipes = rds.readRecipes();
         Log.d("YACA", recipes.toString());
