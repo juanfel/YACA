@@ -1,5 +1,6 @@
 package com.juanfel.yaca;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -43,6 +44,16 @@ public class RecipeList extends AppCompatActivity {
         ExpandableListView listView = (ExpandableListView) findViewById(R.id.content_recipe_list);
         RecipeListAdapter listAdapter = new RecipeListAdapter(this, recipe_list);
         listView.setAdapter(listAdapter);
+
+        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener(){
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+
+                Intent intent = new Intent(getApplicationContext(), RecipeDetailActivity.class);
+                startActivity(intent);
+                return false;
+            }
+        });
     }
 
     @Override
