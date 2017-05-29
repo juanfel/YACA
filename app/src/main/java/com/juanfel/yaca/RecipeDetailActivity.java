@@ -41,6 +41,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
                     isTimerStarted = false;
                 }
                 else{
+                    if(timer != null){
+                        timer.cancel();
+                    }
                     timer = new CountDownTimer(time_to_end*1000,1000) {
                         @Override
                         public void onTick(long millisUntilFinished) {
@@ -51,7 +54,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
                         public void onFinish() {
                             isTimerStarted = false;
                         }
-                    };
+                    }.start();
                     botonCronometro.setText("Pausar");
                     isTimerStarted = true;
                 }
