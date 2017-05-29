@@ -41,6 +41,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
                     botonCronometro.setText("Comenzar");
                     timer.cancel();
                     isTimerStarted = false;
+                    time_to_end = numberPicker.getValue();
                 }
                 else{
                     if(timer != null){
@@ -49,12 +50,16 @@ public class RecipeDetailActivity extends AppCompatActivity {
                     timer = new CountDownTimer(time_to_end*1000,1000) {
                         @Override
                         public void onTick(long millisUntilFinished) {
-                            numberPicker.setValue((int)millisUntilFinished/1000);
+                            int value = (int)millisUntilFinished/1000;
+                            numberPicker.setValue(value);
+                            time_to_end = value;
                         }
 
                         @Override
                         public void onFinish() {
                             isTimerStarted = false;
+                            numberPicker.setValue(0);
+                            botonCronometro.setText("Comenzar");
                         }
                     }.start();
                     botonCronometro.setText("Pausar");
