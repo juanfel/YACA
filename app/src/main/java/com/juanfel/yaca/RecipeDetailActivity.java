@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
@@ -30,6 +31,16 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         final Button botonCronometro = (Button)findViewById(R.id.timer_button);
         final Chronometer chronometer = (Chronometer)findViewById(R.id.timer_seconds);
+        final NumberPicker numberPicker = (NumberPicker)findViewById(R.id.timer_total_seconds);
+
+        numberPicker.setMaxValue(999);
+        numberPicker.setMinValue(0);
+        numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                time_to_end = newVal;
+            }
+        });
 
         chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override

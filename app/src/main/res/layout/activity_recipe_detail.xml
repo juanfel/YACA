@@ -30,6 +30,27 @@
             android:gravity="center"
             android:text="Paso de ejemplo con temporizador."
            />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/timer_total_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tiempo"
+                android:layout_centerVertical="true"
+                />
+
+            <NumberPicker
+                android:id="@+id/timer_total_seconds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/fab_margin"
+                android:layout_toEndOf="@id/timer_total_label" />
+
+        </RelativeLayout>
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
