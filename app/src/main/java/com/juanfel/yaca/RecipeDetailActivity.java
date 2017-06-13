@@ -36,8 +36,8 @@ public class RecipeDetailActivity extends AppCompatActivity {
             public void onChronometerTick(Chronometer chronometer) {
                 long delta = SystemClock.elapsedRealtime() - chronometer.getBase();
                 if(delta >= time_to_end*1000) {
-                    switchTimer(botonCronometro, chronometer);
                     chronometer.setBase(SystemClock.elapsedRealtime());
+                    switchTimer(botonCronometro, chronometer);
                 }
                 else{
                     seekBar.setProgress(100*(int)delta/(time_to_end*1000));
