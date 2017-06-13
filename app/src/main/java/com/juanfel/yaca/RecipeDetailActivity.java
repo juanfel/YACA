@@ -7,29 +7,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.NumberPicker;
+import android.widget.ProgressBar;
+import android.widget.SeekBar;
 
 public class RecipeDetailActivity extends AppCompatActivity {
 
     int time_to_end = 130;
     Boolean isTimerStarted = false;
     CountDownTimer timer = null;
+    SeekBar seekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
 
-        final NumberPicker numberPicker = (NumberPicker)findViewById(R.id.timer_seconds);
-        numberPicker.setMinValue(0);
-        numberPicker.setMaxValue(300);
-        numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                time_to_end = newVal;
-            }
-        });
+        seekBar = (SeekBar)findViewById(R.id.timer_bar);
 
+        final Chronometer chronometer = (Chronometer)findViewById(R.id.timer_seconds);
 
 
         final Button botonCronometro = (Button)findViewById(R.id.timer_button);
@@ -39,29 +36,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(isTimerStarted){
                     botonCronometro.setText("Comenzar");
-                    timer.cancel();
                     isTimerStarted = false;
-                    time_to_end = numberPicker.getValue();
                 }
                 else{
-                    if(timer != null){
-                        timer.cancel();
-                    }
-                    timer = new CountDownTimer(time_to_end*1000,1000) {
-                        @Override
-                        public void onTick(long millisUntilFinished) {
-                            int value = (int)millisUntilFinished/1000;
-                            numberPicker.setValue(value);
-                            time_to_end = value;
-                        }
-
-                        @Override
-                        public void onFinish() {
-                            isTimerStarted = false;
-                            numberPicker.setValue(0);
-                            botonCronometro.setText("Comenzar");
-                        }
-                    }.start();
                     botonCronometro.setText("Pausar");
                     isTimerStarted = true;
                 }
