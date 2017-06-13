@@ -39,6 +39,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
                     switchTimer(botonCronometro, chronometer);
                     chronometer.setBase(SystemClock.elapsedRealtime());
                 }
+                else{
+                    seekBar.setProgress(100*(int)delta/(time_to_end*1000));
+                }
             }
         });
 
