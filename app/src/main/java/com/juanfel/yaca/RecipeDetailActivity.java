@@ -1,6 +1,7 @@
 package com.juanfel.yaca;
 
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,23 +27,24 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         seekBar = (SeekBar)findViewById(R.id.timer_bar);
 
+        final Button botonCronometro = (Button)findViewById(R.id.timer_button);
         final Chronometer chronometer = (Chronometer)findViewById(R.id.timer_seconds);
 
+        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometer) {
+                long delta = SystemClock.elapsedRealtime() - chronometer.getBase();
+                if(delta >= time_to_end*1000){
+                    switchTimer(botonCronometro, chronometer);
+                }
+            }
+        });
 
-        final Button botonCronometro = (Button)findViewById(R.id.timer_button);
         botonCronometro.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-                if(isTimerStarted){
-                    botonCronometro.setText("Comenzar");
-                    isTimerStarted = false;
-                }
-                else{
-                    botonCronometro.setText("Pausar");
-                    isTimerStarted = true;
-                }
-
+                switchTimer(botonCronometro, chronometer);
             }
         });
     }
@@ -66,5 +68,19 @@ public class RecipeDetailActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void switchTimer(Button botonCronometro, Chronometer chronometer){
+        //Cambia el timer de encendido a apagado y viceversa.
+
+        if(isTimerStarted){
+            botonCronometro.setText("Comenzar");
+            chronometer.stop();
+            isTimerStarted = false;
+        }
+        else{
+            botonCronometro.setText("Pausar");
+            chronometer.start();
+            isTimerStarted = true;
+        }
     }
 }
