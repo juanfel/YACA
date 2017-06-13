@@ -15,7 +15,8 @@ import android.widget.SeekBar;
 
 public class RecipeDetailActivity extends AppCompatActivity {
 
-    int time_to_end = 130;
+    int time_to_end = 30;
+    long elapsed = 0;
     Boolean isTimerStarted = false;
     CountDownTimer timer = null;
     SeekBar seekBar;
@@ -34,8 +35,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
                 long delta = SystemClock.elapsedRealtime() - chronometer.getBase();
-                if(delta >= time_to_end*1000){
+                if(delta >= time_to_end*1000) {
                     switchTimer(botonCronometro, chronometer);
+                    chronometer.setBase(SystemClock.elapsedRealtime());
                 }
             }
         });
@@ -75,10 +77,12 @@ public class RecipeDetailActivity extends AppCompatActivity {
         if(isTimerStarted){
             botonCronometro.setText("Comenzar");
             chronometer.stop();
+            elapsed = SystemClock.elapsedRealtime() - chronometer.getBase();
             isTimerStarted = false;
         }
         else{
             botonCronometro.setText("Pausar");
+            chronometer.setBase(SystemClock.elapsedRealtime() - elapsed);
             chronometer.start();
             isTimerStarted = true;
         }
