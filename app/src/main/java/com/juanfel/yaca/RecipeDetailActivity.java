@@ -9,9 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
-import android.widget.EditText;
 import android.widget.NumberPicker;
-import android.widget.ProgressBar;
 import android.widget.SeekBar;
 
 public class RecipeDetailActivity extends AppCompatActivity {
@@ -19,7 +17,6 @@ public class RecipeDetailActivity extends AppCompatActivity {
     int time_to_end = 30;
     long elapsed = 0;
     Boolean isTimerStarted = false;
-    CountDownTimer timer = null;
     SeekBar seekBar;
 
     @Override
