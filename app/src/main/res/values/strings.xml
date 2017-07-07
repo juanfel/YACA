@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">YACA</string>
     <string name="action_settings">Settings</string>
+
+    <string name="new_recipe_name">Nombre</string>
+    <string name="new_recipe_time_title">Tiempo total esperado</string>
+    <string name="new_recipe_ratio_title">Razón café/agua</string>
+    <string name="new_recipe_save">Guardar</string>
+
 </resources>
