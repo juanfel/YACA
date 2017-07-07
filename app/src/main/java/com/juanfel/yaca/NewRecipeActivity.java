@@ -1,5 +1,6 @@
 package com.juanfel.yaca;
 
+import android.content.Intent;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * Clase que permite guardar recetas.
+ */
 public class NewRecipeActivity extends AppCompatActivity {
 
     @Override
@@ -29,6 +33,9 @@ public class NewRecipeActivity extends AppCompatActivity {
                 Recipe recipe = new Recipe(0,title, "", "");
 
                 rds.insertRecipe(recipe);
+
+                Intent intent = new Intent(getApplicationContext(), RecipeList.class);
+                startActivity(intent);
             }
         });
     }
