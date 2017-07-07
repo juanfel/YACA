@@ -26,13 +26,9 @@ public class RecipeList extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Example database
-                RecipeDataSource rds = new RecipeDataSource(getApplicationContext());
-                Recipe recipe = new Recipe(0,"Testo", "", "");
-                rds.insertRecipe(recipe);
-                List<Recipe> recipes = rds.readRecipes();
-                Snackbar.make(view, "Creando receta de prueba: " + recipe.getNombre(), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                Intent intent = new Intent(getApplicationContext(), NewRecipeActivity.class);
+                startActivity(intent);
             }
         });
 

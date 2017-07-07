@@ -12,7 +12,8 @@
         android:text="@string/new_recipe_name"/>
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/new_recipe_title"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,5 +33,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_recipe_save"/>
+        android:text="@string/new_recipe_save"
+        android:id="@+id/new_recipe_save_button"/>
 </LinearLayout>
