@@ -4,6 +4,7 @@ import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.NumberPicker;
 import android.widget.SeekBar;
+
+import com.google.gson.Gson;
 
 public class RecipeDetailActivity extends AppCompatActivity {
 
@@ -30,8 +33,20 @@ public class RecipeDetailActivity extends AppCompatActivity {
         final Chronometer chronometer = (Chronometer)findViewById(R.id.timer_seconds);
         final NumberPicker numberPicker = (NumberPicker)findViewById(R.id.timer_total_seconds);
 
+        String stepsJson = getIntent().getStringExtra("recipe_step");
+        Gson gson = new Gson();
+        RecipeStep step;
+        if(stepsJson != null){
+            Log.d("YACA",stepsJson);
+            step = gson.fromJson(stepsJson, RecipeStep.class);
+        }
+        else{
+            step = new RecipeStep(true,10,16);
+        }
         numberPicker.setMaxValue(999);
         numberPicker.setMinValue(0);
+        numberPicker.setValue(step.step_time);
+
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {

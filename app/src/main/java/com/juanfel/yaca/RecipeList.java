@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -47,7 +48,9 @@ public class RecipeList extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), RecipeDetailActivity.class);
                 Recipe recipe = (Recipe)parent.getExpandableListAdapter().getGroup(groupPosition);
-                intent.putExtra("recipe", recipe);
+
+                Log.d("YACA recipe", recipe.getSteps());
+                intent.putExtra("recipe_step", recipe.getSteps());
                 startActivity(intent);
                 return false;
             }
