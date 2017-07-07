@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 /**
  * Clase que permite guardar recetas.
  */
@@ -22,6 +24,7 @@ public class NewRecipeActivity extends AppCompatActivity {
 
         final NumberPicker timer = (NumberPicker)findViewById(R.id.new_recipe_time);
         timer.setMinValue(0);
+        timer.setMaxValue(999);
 
         final NumberPicker ratio = (NumberPicker)findViewById(R.id.new_recipe_ratio);
         ratio.setMinValue(0);
@@ -38,7 +41,11 @@ public class NewRecipeActivity extends AppCompatActivity {
 
                 String title = titleView.getText().toString();
 
-                Recipe recipe = new Recipe(0,title, "", "");
+                RecipeStep content = new RecipeStep(true, timer.getValue(), ratio.getValue());
+                Gson gson = new Gson();
+                String json = gson.toJson(content);
+
+                Recipe recipe = new Recipe(0,title, json ,"");
 
                 rds.insertRecipe(recipe);
 
