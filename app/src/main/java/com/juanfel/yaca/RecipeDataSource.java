@@ -30,8 +30,7 @@ public class RecipeDataSource {
         ContentValues cv = new ContentValues();
         cv.put(dbHelper.Recipe_Name, recipe.getNombre());
 
-        //TODO
-        cv.put(dbHelper.Recipe_Steps_Json, "TODO");
+        cv.put(dbHelper.Recipe_Steps_Json, recipe.getSteps());
 
         SimpleDateFormat df = new SimpleDateFormat("YYYY-MM-DD HH:mm:ss");
         df.setTimeZone(TimeZone.getTimeZone("GMT"));
@@ -53,10 +52,10 @@ public class RecipeDataSource {
         while(!cursor.isAfterLast()){
             int id = cursor.getInt(cursor.getColumnIndex(dbHelper.Recipe_Id));
             String name = cursor.getString(cursor.getColumnIndex(dbHelper.Recipe_Name));
-            //String steps = cursor.getString(cursor.getColumnIndex(dbHelper.Recipe_Steps_Json));
+            String steps = cursor.getString(cursor.getColumnIndex(dbHelper.Recipe_Steps_Json));
             String timestamp = cursor.getString(cursor.getColumnIndex(dbHelper.Recipe_Timestamp));
 
-            Recipe recipe = new Recipe(id,name, "", timestamp);
+            Recipe recipe = new Recipe(id,name, steps, timestamp);
             recipes.add(recipe);
             cursor.moveToNext();
         }
