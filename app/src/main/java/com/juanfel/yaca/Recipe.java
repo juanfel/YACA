@@ -1,5 +1,6 @@
 package com.juanfel.yaca;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.TimeZone;
  * Modelo de dominio para una receta.
  */
 
-public class Recipe {
+public class Recipe implements Serializable{
     private String nombre;
     private Integer id;
     private String steps;

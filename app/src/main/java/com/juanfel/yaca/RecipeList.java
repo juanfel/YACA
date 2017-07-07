@@ -46,6 +46,8 @@ public class RecipeList extends AppCompatActivity {
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
 
                 Intent intent = new Intent(getApplicationContext(), RecipeDetailActivity.class);
+                Recipe recipe = (Recipe)parent.getExpandableListAdapter().getGroup(groupPosition);
+                intent.putExtra("recipe", recipe);
                 startActivity(intent);
                 return false;
             }
