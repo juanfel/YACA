@@ -61,4 +61,9 @@ public class RecipeDataSource {
         }
         return recipes;
     }
+
+    public void deleteRecipe(String id){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.delete(dbHelper.Recipe_Table, dbHelper.Recipe_Id + " = ?", new String[]{id});
+    }
 }

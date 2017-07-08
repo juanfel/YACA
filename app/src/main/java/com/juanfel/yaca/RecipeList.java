@@ -18,7 +18,7 @@ import android.widget.ExpandableListView;
 import java.util.List;
 
 public class RecipeList extends AppCompatActivity {
-
+    RecipeListAdapter listAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +42,7 @@ public class RecipeList extends AppCompatActivity {
 
         //Creación de la lista de recetas
         ExpandableListView listView = (ExpandableListView) findViewById(R.id.content_recipe_list);
-        RecipeListAdapter listAdapter = new RecipeListAdapter(this, recipe_list);
+        listAdapter = new RecipeListAdapter(this, recipe_list);
         listView.setAdapter(listAdapter);
 
         listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener(){
@@ -92,10 +92,16 @@ public class RecipeList extends AppCompatActivity {
     }
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        ExpandableListView.ExpandableListContextMenuInfo info = (ExpandableListView.ExpandableListContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()) {
             case R.id.menu_recipe_list_delete:
-                return super.onContextItemSelected(item);
+                Recipe recipe = (Recipe)listAdapter.getGroup(ExpandableListView.getPackedPositionGroup(info.packedPosition));
+                RecipeDataSource rds = new RecipeDataSource(getApplicationContext());
+                rds.deleteRecipe(Integer.toString(recipe.getId()));
+
+                Intent intent = new Intent(getApplicationContext(), RecipeList.class);
+                startActivity(intent);
+                return true;
             case R.id.menu_recipe_list_modify:
                 return super.onContextItemSelected(item);
             default:
