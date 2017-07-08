@@ -1,11 +1,8 @@
 package com.juanfel.yaca;
 
-import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,6 +46,8 @@ public class RecipeDetailActivity extends AppCompatActivity {
         else{
             step = new RecipeStep(true,10,16);
         }
+
+        time_to_end = step.step_time;
 
         coffeeField.setText("16");
         waterField.setText("100");
