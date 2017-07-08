@@ -1,8 +1,13 @@
 package com.juanfel.yaca;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.SystemClock;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -88,6 +93,9 @@ public class RecipeDetailActivity extends AppCompatActivity {
                 if(delta >= time_to_end*1000) {
                     chronometer.setBase(SystemClock.elapsedRealtime());
                     switchTimer(botonCronometro, chronometer);
+                    makeBrewOverNotification();
+
+
                 }
                 else{
                     seekBar.setProgress(100*(int)delta/(time_to_end*1000));
@@ -164,4 +172,35 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
         waterField.setText(Integer.toString(water));
     }
+
+    /**
+     * Crea notificación para cuando termina el temporizador
+     */
+    public void makeBrewOverNotification(){
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("Terminó la receta")
+                        .setContentText("")
+                        .setSound(Settings.System.DEFAULT_NOTIFICATION_URI);
+
+        Intent notificationIntent = new Intent(this, RecipeDetailActivity.class);
+
+        PendingIntent resultPendingIntent =
+                PendingIntent.getActivity(
+                        this,
+                        0,
+                        notificationIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+
+        mBuilder.setContentIntent(resultPendingIntent);
+        mBuilder.setAutoCancel(true);
+        // Sets an ID for the notification
+        int mNotificationId = 001;
+        NotificationManager mNotifyMgr =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        mNotifyMgr.notify(mNotificationId, mBuilder.build());
+    }
+
 }
