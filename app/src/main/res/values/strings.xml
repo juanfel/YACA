@@ -7,4 +7,8 @@
     <string name="new_recipe_ratio_title">Razón café/agua</string>
     <string name="new_recipe_save">Guardar</string>
 
+    <string name="activity_recipe_detail_timer_label">Tiempo transcurrido</string>
+    <string name="activity_recipe_detail_water_label">Agua</string>
+    <string name="activity_recipe_detail_coffee_label">Café</string>
+
 </resources>
