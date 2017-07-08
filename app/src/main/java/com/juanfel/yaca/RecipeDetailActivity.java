@@ -4,12 +4,15 @@ import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.SeekBar;
 
@@ -21,6 +24,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
     long elapsed = 0;
     Boolean isTimerStarted = false;
     SeekBar seekBar;
+    RecipeStep step;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +36,12 @@ public class RecipeDetailActivity extends AppCompatActivity {
         final Button botonCronometro = (Button)findViewById(R.id.timer_button);
         final Chronometer chronometer = (Chronometer)findViewById(R.id.timer_seconds);
         final NumberPicker numberPicker = (NumberPicker)findViewById(R.id.timer_total_seconds);
+        final EditText coffeeField = (EditText)findViewById(R.id.activity_recipe_detail_coffee);
+        final EditText waterField= (EditText)findViewById(R.id.activity_recipe_detail_water);
+
 
         String stepsJson = getIntent().getStringExtra("recipe_step");
         Gson gson = new Gson();
-        RecipeStep step;
         if(stepsJson != null){
             Log.d("YACA",stepsJson);
             step = gson.fromJson(stepsJson, RecipeStep.class);
@@ -112,5 +118,29 @@ public class RecipeDetailActivity extends AppCompatActivity {
             chronometer.start();
             isTimerStarted = true;
         }
+    }
+
+    /**
+     * Cambia los campos de café en base al ratio usado y al agua actual.
+     * @param coffeeField
+     * @param waterField
+     */
+    public void setCoffeeByRatio(EditText coffeeField, EditText waterField){
+        int water = Integer.parseInt(waterField.getText().toString());
+        int coffee = water/step.coffee_percent;
+
+        coffeeField.setText(Integer.toString(coffee));
+    }
+
+    /**
+     * Cambia el campo de agua en base al ratio usado y al agua actual.
+     * @param coffeeField
+     * @param waterField
+     */
+    public void setWaterByRatio(EditText coffeeField, EditText waterField){
+        int coffee = Integer.parseInt(coffeeField.getText().toString());
+        int water = coffee*step.coffee_percent;
+
+        waterField.setText(Integer.toString(water));
     }
 }
