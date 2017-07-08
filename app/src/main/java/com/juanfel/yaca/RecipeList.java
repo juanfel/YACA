@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -103,7 +104,9 @@ public class RecipeList extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.menu_recipe_list_modify:
-                return super.onContextItemSelected(item);
+                Toast toast = Toast.makeText(getApplicationContext(),"TODO", Toast.LENGTH_SHORT);
+                toast.show();
+                return true;
             default:
                 return super.onContextItemSelected(item);
         }
