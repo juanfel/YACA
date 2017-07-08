@@ -1,5 +1,7 @@
 package com.juanfel.yaca;
 
+import com.google.gson.Gson;
+
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,11 +26,15 @@ public class Recipe implements Serializable{
     public Recipe(Integer id, String nombre, String steps, String timestamp){
         this.setId(id);
         this.setNombre(nombre);
+        this.steps = steps;
+        Gson gson = new Gson();
+        RecipeStep stepObject = gson.fromJson(steps, RecipeStep.class);
         if(this.header_list != null){
             this.header_list.add("ID: " + this.getId() + "\n");
             this.header_list.add("Timestamp:" + timestamp + "\n");
+            this.header_list.add("Ratio: 1:" + stepObject.coffee_percent);
+            this.header_list.add("Tiempo total:" + stepObject.step_time + " segundos");
         }
-        this.steps = steps;
         this.timestamp = timestamp;
     }
 
