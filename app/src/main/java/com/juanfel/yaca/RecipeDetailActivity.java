@@ -49,6 +49,28 @@ public class RecipeDetailActivity extends AppCompatActivity {
         else{
             step = new RecipeStep(true,10,16);
         }
+
+        coffeeField.setText("16");
+        waterField.setText("100");
+        setWaterByRatio(coffeeField,waterField);
+
+        coffeeField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    setWaterByRatio(coffeeField,waterField);
+                }
+            }
+        });
+
+        waterField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus){
+                    setCoffeeByRatio(coffeeField,waterField);
+                }
+            }
+        });
         numberPicker.setMaxValue(999);
         numberPicker.setMinValue(0);
         numberPicker.setValue(step.step_time);
