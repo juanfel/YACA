@@ -7,9 +7,12 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 
 import java.util.List;
@@ -55,6 +58,8 @@ public class RecipeList extends AppCompatActivity {
                 return false;
             }
         });
+
+        registerForContextMenu(listView);
     }
 
     @Override
@@ -77,5 +82,24 @@ public class RecipeList extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_recipe_list_options, menu);
+    }
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+            case R.id.menu_recipe_list_delete:
+                return super.onContextItemSelected(item);
+            case R.id.menu_recipe_list_modify:
+                return super.onContextItemSelected(item);
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 }
